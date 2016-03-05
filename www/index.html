@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+<!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
+<script src="http://maps.googleapis.com/maps/api/js"> </script>
+		
+<!-- <script src="http://192.168.0.7:8080/target/target-script-min.js"></script> -->
+</head>
+<body onload="LoadDB()">
+
+<div data-role="page" id='Home' data-theme="b">
+  <div data-role="header">
+    <h1>Home</h1>
+	<div data-role="navbar">
+      <ul>
+        <li><a href="#Home" data-transition='slide' class="ui-btn-active ui-state-persist" data-icon="home">Home</a></li>
+        <li><a href="#addVenue" data-transition='slide' data-icon="plus">Add Site</a></li>
+      </ul>
+    </div>
+  </div>
+
+<div data-role="main" class="ui-content">
+<!-- <div id="googleMap" style="width:300px;height:200px;"></div>
+    -->     
+	<form class="ui-filterable">
+      <input id="myFilter" data-type="search" placeholder="Search for sites..">
+    </form>
+    <ul id= "allSites" data-filter="true" data-input="#myFilter" data-autodividers="false" data-role="listview" data-inset="true">
+        <li id ="alv" data-role="divider" align="center">Sites</li>
+	</ul>
+  </div>
+
+  <div data-role="footer">
+    <h1>&copy; Mo Sites</h1>
+  </div>
+</div>
+<div data-role="page" id='addVenue' data-theme="b">
+  <div data-role="header">
+    <h1>Add Site</h1>
+	<div data-role="navbar">
+      <ul>
+        <li><a href="#Home" data-transition='slide' data-icon="home">Home</a></li>
+        <li><a href="#addVenue" data-transition='slide' class="ui-btn-active ui-state-persist" data-icon="plus">Add Site</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div data-role="main" class="ui-content">
+  
+	<img id="siteImg" src ="img/pna.jpg" class="img-responsive img-rounded" align="middle" /></br>
+	<div align="center"><img id ="takePhoto" width=60 height=60 align="center" src="img/cam.png" onClick=capturePhoto("#siteImg") ></div>
+	</br>
+	Location:
+	<div align="center">
+	<div id="map" style="width:350px;height:220px;" align="center"></div></div>
+	<input id="getLoc" type="submit" data-icon="location" value="Get Location" onClick="getLocation('#map');"></input>
+	Name: <input id="sName"type="text" name="Name"><br>
+	Notes: <textarea id="sNotes" rows="6" > </textarea><br>
+	<div align="center"><img id ="eRecord" width=60 height=60 align="center" src="img/Microphone.png" onClick=captureAudio() ></div>
+	</br>
+	<!-- <input id="sRecord"type="submit" value="Record Audio" onClick=captureAudio() name="Other"><br>
+	 --><input id="sPlay"type="submit" value="Play Audio" data-icon="audio" onClick=playAudio(audiopath) name="Other"><br>
+	<input id ="addSite" data-transition='slide' data-role="button" type="submit" value="Create Site" data-icon="plus">
+  </div>
+
+  <div data-role="footer">
+    <h1>&copy; Mo Sites</h1>
+  </div>
+</div>
+<div data-role="page" id='editSitePage' data-theme="b">
+  <div data-role="header">
+    <div data-role="navbar">
+      <ul id="editNav">
+        <li><a href="#Home" data-transition='fade' data-icon="back">Home</a></li>
+		<li><a id="updateSite" href='#' data-transition='fade' data-icon='check' >Update</a></li>		 
+      </ul>
+  </div>
+  </div>
+  <div data-role="main" class="ui-content">
+    <span class="ui-icon ui-icon-delete ui-icon-shadow">&nbsp;</span>
+	Name: <input id="eName" type="text" name="Name"><br>
+	<img id="eImg" src ="img/pna.jpg" class="img-responsive img-rounded" align="middle" />
+	<input id ="updatePhoto" type="submit" data-icon="camera" value="Change Image" onClick=capturePhoto("#eImg")></br>
+	Notes: <textarea id="eNotes" type="text" name="Notes"></textarea><br>
+	Location:
+	<div align="center"><div id="emap" align="middle" style="width:350px;height:220px;" ></div></div></br>
+	<input id="egetLoc" type="submit" data-icon="location" value="Update Location" onClick="getLocation('#emap');"></input>
+	<div align="center">Update Audio <img id ="eRecord" width=60 height=60 align="center" src="img/Microphone.png" onClick=captureAudio() ></div>
+	</br>
+	<input id="ePlay"type="submit" value="Play Audio" data-icon="audio" onClick=playAudio(audiopath) name="Other"><br>
+	
+  </div>
+
+  
+  <div data-role="footer">
+    <h1>&copy; Mo Sites</h1>
+  </div>
+</div> 
+	<script type="text/javascript" src="cordova.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+	
+	<script type="text/javascript" src="js/AppScript.js"></script>
+	   <script type="text/javascript">
+        app.initialize();
+	</script>
+	
+
+</body>
+</html>
